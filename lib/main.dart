@@ -143,10 +143,10 @@ class _QRViewExampleState extends State<QRViewExample> {
         final jsonResponse = json.decode(response.body);
         // Tampilkan hasil dari VirusTotal (misalnya dideteksi atau aman)
         final scanResult = jsonResponse['data']['attributes']['last_analysis_stats'];
-        final malicious = scanResult['malicious'];  
-        final suspicious = scanResult['suspicious']; 
+        final maliciousData = scanResult['malicious'];  
+        final suspiciousData = scanResult['suspicious']; 
 
-        if (malicious == 0 && suspicious == 0) {
+        if (maliciousData == 0 && suspiciousData == 0) {
           final url = result!.code!;
           showDialog(
             context: context,
@@ -163,7 +163,6 @@ class _QRViewExampleState extends State<QRViewExample> {
                       if (await canLaunchUrl(uri)) {
                         await launchUrl(uri, mode: LaunchMode.externalApplication);
                       } else {
-                        print('COULD NOT LAUNCH $url');
                         throw 'Could not launch $url';
                       }
                     },
